@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Grade 10 Classmates System</title>
+
+<style>
+    body {
+        font-family: Allura, cursive;
+        background: #ffffff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    
+    .title {
+        margin-bottom: 20px;
+    }
+
+    .title h2 {
+        margin: 0;
+        font-size: 28px;
+    }
+
+    .title p {
+        margin: 5px 0 0;
+        font-size: 16px;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        outline: none;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        transition: 0.2s;
+    }
+
+    input:focus {
+        border-color: #febfff;
+        box-shadow: 0 0 5px rgba(254,191,255,0.5);
+    }
+
+    button {
+        padding: 12px;
+        width: 48%;
+        margin-top: 10px;
+        border: none;
+        color: black;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        opacity: 0.85;
+    }
+
+    .add-btn {
+        background: #febfff;
+    }
+
+    .show-btn {
+        background: #ffffa3;
+    }
+
+    .list {
+        margin-top: 20px;
+        background: #fafafa;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: left;
+    }
+</style>
+</head>
+
+<body>
+
+
+<div class="title">
+    <h2>Grade 10 Classmates System</h2>
+    <p>Add and view your classmates easily</p>
+</div>
+
+<div class="container">
+
+    <input type="text" id="name" placeholder="Enter name">
+    <input type="text" id="section" placeholder="Enter section">
+    <input type="text" id="subject" placeholder="Enter favorite subject">
+
+    <button class="add-btn" onclick="addClassmate()">Add Classmate</button>
+    <button class="show-btn" onclick="showList()">Show List</button>
+
+    <div class="list" id="output"></div>
+</div>
+
+<script>
+    class Classmate {
+        constructor(name, section, favorite_subject) {
+            this.name = name;
+            this.section = section;
+            this.favorite_subject = favorite_subject;
+        }
+
+        introduce() {
+            return `Hi! I am ${this.name} from ${this.section}. My favorite subject is ${this.favorite_subject}.`;
+        }
+    }
+
+    let classmates = [
+        new Classmate("Max", "Sapphire", "Math"),
+        new Classmate("Alonso", "Sapphire", "Homeroom"),
+        new Classmate("Enzo", "Sapphire", "Math"),
+        new Classmate("Vic", "Sapphire", "PE"),
+        new Classmate("Cade", "Sapphire", "Science"),
+        new Classmate("Kayla", "Sapphire", "Lunch"),
+        new Classmate("Athena", "Sapphire", "SS"),
+        new Classmate("Rad", "Sapphire", "Marching Band"),
+        new Classmate("Zyan", "Sapphire", "English"),
+        new Classmate("Mara", "Sapphire", "Marching Band"),
+        new Classmate("Kleiser", "Sapphire", "PE"),
+        new Classmate("Curt", "Sapphire", "PE"),
+        new Classmate("Ethan", "Sapphire", "Math"),
+        new Classmate("Sophie", "Sapphire", "Science"),
+        new Classmate("Javi", "Sapphire", "Math"),
+        new Classmate("AC", "Sapphire", "Lebron James"),
+        new Classmate("Lei", "Sapphire", "SS"),
+        new Classmate("Yanna", "Sapphire", "PE"),
+        new Classmate("Zoe", "Sapphire", "VE"),
+        new Classmate("Luis", "Sapphire", "ICT"),
+        new Classmate("Ara", "Sapphire", "English"),
+        new Classmate("Inigo", "Sapphire", "SS"),
+        new Classmate("Kyler", "Sapphire", "Math"),
+        new Classmate("Jaedin", "Sapphire", "SS"),
+        new Classmate("Bri", "Sapphire", "Math"),
+        new Classmate("Charlotte", "Sapphire", "PE"),
+        new Classmate("Jared", "Sapphire", "English"),
+        new Classmate("KC", "Sapphire", "Math")
+    ];
+
+    function addClassmate() {
+        let name = document.getElementById("name").value;
+        let section = document.getElementById("section").value;
+        let subject = document.getElementById("subject").value;
+
+        if (name === "" || section === "" || subject === "") {
+            alert("Please fill in all fields!");
+            return;
+        }
+
+        let newClassmate = new Classmate(name, section, subject);
+        classmates.push(newClassmate);
+
+        alert("Classmate added!");
+
+        document.getElementById("name").value = "";
+        document.getElementById("section").value = "";
+        document.getElementById("subject").value = "";
+    }
+
+    function showList() {
+        let output = document.getElementById("output");
+        output.innerHTML = "<h3>Classmate List</h3>";
+
+        for (let i = 0; i < classmates.length; i++) {
+            output.innerHTML += "<p>" + classmates[i].introduce() + "</p>";
+        }
+    }
+</script>
+
+</body>
+</html>
